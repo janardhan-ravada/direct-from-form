@@ -1,0 +1,20 @@
+<div ng-controller = 'bookController' class="row">
+	<div class="col-md-6 col-md-offset-3 well well-sm">
+		<input type ='text' ng-model='book.title' class="form-control  form-group" placeholder = "Book Title">
+
+		<input type ='text' ng-model='book.isbnNumber' class="form-control  form-group" placeholder = "ISBN Number">
+
+		<input type ='text' ng-model='book.totalStock' class="form-control  form-group" placeholder = "Total stock">
+
+		<input type ='text' ng-model='book.price' class="form-control  form-group" placeholder = "Price">
+
+		<input type ='text' ng-model='book.publisher' uib-typeahead="publisher as publisher.name for publisher in publishers | filter:$viewValue" typeahead-show-hint="true" typeahead-min-length="0" class="form-control  form-group" placeholder = "Publisher">
+
+		<div class="form-group">
+			<label>Authors:    </label><ng-dropdown-multiselect options="authors" selected-model="book.authors" extra-settings="multiselectsettings">
+		</div>
+
+		<button ng-click='addBook()' class="btn btn-primary form-control form-group">Add</button>
+		{{book}}
+	</div>
+</div> 

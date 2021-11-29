@@ -1,0 +1,11 @@
+<div ng-controller = 'membersController' class="text-center">
+  
+
+<div ng-repeat = "member in members">
+  
+  <a>
+  <img ng-src="library/images/person_logo.jpg" title="{{member.name}}" style="height:50px;width:80px"
+  " ng-click = "viewMember(member)"><sub>{{member.name}}</sub></a>
+</div>
+
+</div>

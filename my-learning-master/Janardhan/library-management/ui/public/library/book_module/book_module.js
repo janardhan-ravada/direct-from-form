@@ -1,0 +1,1 @@
+angular.module('book_module', ['ngResource','ui.bootstrap', 'angularjs-dropdown-multiselect']);

@@ -1,0 +1,5 @@
+<div ng-controller = 'bookController' class="text-center">
+  <div ng-repeat = "book in books" class="box">
+    <a ui-sref ="book_details({id:book.id})"><img ng-src="library/images/book_logo.jpg" title="book.title" style="height:50px;width:80px"><sub>{{book.title}}</sub></a>
+  </div>
+</div>

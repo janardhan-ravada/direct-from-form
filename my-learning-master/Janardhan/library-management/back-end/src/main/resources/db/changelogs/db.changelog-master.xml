@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+	<changeSet id="1" author="ravadaj">
+		<createTable tableName="AUTHOR">
+			<column name="ID" type="BIGINT" autoIncrement="true">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="NAME" type="varchar2(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="EMAIL_ADDRESS" type="varchar2(255)">
+				<constraints nullable="false" unique="true" />
+			</column>
+		</createTable>
+
+		<createTable tableName="PUBLISHER">
+			<column name="ID" type="BIGINT" autoIncrement="true">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="NAME" type="varchar2(255)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<createTable tableName="BOOK">
+			<column name="ID" type="BIGINT" autoIncrement="true">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="TITLE" type="varchar2(255)" />
+			<column name="ISBN_NUMBER" type="varchar2(255)">
+				<constraints unique="true" />
+			</column>
+			<column name="TOTAL_STOCK" type="BIGINT" />
+			<column name="AVAILABLE_STOCK" type="BIGINT" />
+			<column name="PRICE" type="NUMBER(5,2)" />
+			<column name="PUBLISHER_ID" type="BIGINT" />
+		</createTable>
+
+		<addForeignKeyConstraint constraintName="BOOK_PUBLISHER_FK"
+			referencedTableName="PUBLISHER" baseColumnNames="PUBLISHER_ID"
+			baseTableName="BOOK" referencedColumnNames="ID" />
+
+		<createTable tableName="BOOK_AUTHOR">
+			<column name="BOOK_ID" type="BIGINT" />
+			<column name="AUTHOR_ID" type="BIGINT" />
+		</createTable>
+
+		<addForeignKeyConstraint constraintName="FK_BOOK_AUTHOR_BOOK"
+			referencedTableName="BOOK" baseColumnNames="BOOK_ID" baseTableName="BOOK_AUTHOR"
+			referencedColumnNames="ID" />
+
+		<addForeignKeyConstraint constraintName="FK_BOOK_AUTHOR_AUTHOR"
+			referencedTableName="AUTHOR" baseColumnNames="AUTHOR_ID"
+			baseTableName="BOOK_AUTHOR" referencedColumnNames="ID" />
+
+		<!-- <createSequence sequenceName="hibernate_sequence" startValue="1000" 
+			incrementBy="1" /> -->
+
+	</changeSet>
+
+	<changeSet id="2" author="ravadaj">
+		<createTable tableName="ROLE">
+			<column name="ID" type="BIGINT" autoIncrement="true">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="ROLE_NAME" type="varchar2(255)">
+				<constraints nullable="false" unique="true"/>
+			</column>
+			<column name="DESCRIPTION" type="varchar2(255)" />
+		</createTable>
+
+		<createTable tableName="USER">
+			<column name="ID" type="BIGINT" autoIncrement="true">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="USER_NAME" type="varchar2(255)">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="PASSWORD" type="varchar2(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="ROLE_ID" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<insert tableName="ROLE">
+			<column name="ID" value="1" />
+			<column name="ROLE_NAME" value="ADMIN" />
+			<column name="DESCRIPTION" value="Admin Role" />
+		</insert>
+
+		<insert tableName="ROLE">
+			<column name="ID" value="2" />
+			<column name="ROLE_NAME" value="USER" />
+			<column name="DESCRIPTION" value="Uesr role" />
+		</insert>
+		<insert tableName="USER">
+			<column name="ID" value="1" />
+			<column name="USER_NAME" value="ravadaj" />
+			<column name="PASSWORD" value="ravadaj" />
+			<column name="ROLE_ID" value="1" />
+		</insert>
+
+		<addForeignKeyConstraint constraintName="FK_USER_ROLE_ID"
+			referencedTableName="ROLE" baseColumnNames="ROLE_ID" baseTableName="USER"
+			referencedColumnNames="ID" />
+	</changeSet>
+</databaseChangeLog>

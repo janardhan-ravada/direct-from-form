@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<style type="text/css">
+	
+.box {
+	display: inline-block;
+  	width: 100px;
+  	height: 90px;
+    border: 2px solid green;
+    margin: 1em;
+    float: left;
+}
+
+</style>
+<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script type="text/javascript" src="bower_components/angular-resource/angular-resource.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script type="text/javascript" src="bower_components/lodash/dist/lodash.min.js"></script>
+<script type="text/javascript" src="bower_components/angularjs-dropdown-multiselect/dist/angularjs-dropdown-multiselect.min.js"></script>
+
+<script type="text/javascript" src="library/book_module/book_module.js"></script>
+<script type="text/javascript" src="library/book_module/service/author_service.js"></script>
+<script type="text/javascript" src="library/book_module/service/publisher_service.js"></script>
+<script type="text/javascript" src="library/book_module/service/book_service.js"></script>
+<script type="text/javascript" src="library/book_module/controller/book_controller.js"></script>
+<script type="text/javascript" src="library/book_module/controller/book_view_controller.js"></script>
+<script type="text/javascript" src="library/book_module/controller/author_add_controller.js"></script>
+<script type="text/javascript" src="library/book_module/directives/book_details.js"></script>
+<script type="text/javascript" src="library/book_module/directives/new_author_directive.js"></script>
+
+<script type="text/javascript" src="library/members_module/members_module.js"></script>
+<script type="text/javascript" src="library/members_module/service/members_service.js"></script>
+<script type="text/javascript" src="library/members_module/controller/members_controller.js"></script>
+<script type="text/javascript" src="library/members_module/controller/member_view_controller.js"></script>
+
+<script type="text/javascript" src="library/members_module/directives/member_add_directive.js"></script>
+<script type="text/javascript" src="library/members_module/directives/member_detail_directive.js"></script>
+<script type="text/javascript" src="library/main.js"></script>
+
+<body ng-app= 'libraryapp'>
+<div class="container">
+<div>
+	<a ui-sref="home"><img src="library/images/library_logo.jpg" style="height:200px;width:100%;"></a>
+</div>
+
+<div ui-view class="row">
+<div class="col-md-4 text-center">
+<a ui-sref ='all_books'>
+	<img src="library/images/books_logo.jpg" class="img-circle" alt="Books" width="304" height="236"><br/><sub>Books</sub>
+</a>
+</div>
+<div class="col-md-4 text-center">
+<a ui-sref ='members_module'>
+	<img src="library/images/members_logo.jpg" class="img-circle" alt="Members" width="304" height="236"><br/><sub>Registered users</sub>
+</a>
+</div>
+<div class="col-md-4 text-center">
+<a ui-sref ='members_module'>
+	<img src="library/images/transactions_logo.jpg" class="img-circle" alt="Members" width="304" height="236"><br/><sub>Transactions</sub>
+</a>
+</div>
+ </div>
+ </div>
+</body>
+</html>
